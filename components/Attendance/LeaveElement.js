@@ -18,29 +18,32 @@ let Leave = ({ title }) => {
             end={{ x: 1, y: 0 }}
             colors={['#FFFFFF', '#FFFBF9', '#FFF8F3']}
             style={{
-                height: 60,
-                marginTop: 6,
+                marginVertical: "1%",
                 shadowColor: "grey",
                 borderColor: "#FBE2CC",
                 borderWidth: 2,
                 borderRadius: 15,
-                flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between'
-
+                justifyContent: 'space-between',
+              
             }}>
-                <View style={{ padding: 15, top: 5}}>
-                    <Text style={{
-                        fontWeight: "700",
-                        color: "#545454"
-                    }}>{title}</Text>
+                <View>
+                        <Text style={{
+                            padding: "5%",
+                            fontWeight: "700",
+                            color: "#545454",
+                        }}>{title}</Text>
                 </View>
 
-                <View style={{ padding: 15, right:20, top: 5}} >
-                    <Text style ={{
-                        fontWeight: "700",
-                         color: "#FFB684"
-                    }}>04-01-2012</Text>
+                <View 
+                    style={{ 
+                        padding: "5%", 
+                        
+                    }} >
+                        <Text style ={{
+                            fontWeight: "700",
+                            color: "#FFB684"
+                        }}>04-01-2012</Text>
                 </View>
                 
             {/* <Text style={{

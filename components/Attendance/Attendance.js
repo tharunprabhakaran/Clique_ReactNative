@@ -78,13 +78,13 @@ let Attendance = () => {
     return (
         <>
         <View style={{
-            margin:10
+          margin: 15
         }}>
             <Text style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                //margin: 15,
-                fontSize: 10
+                fontSize: 10,
+                margin: "3%"
             }}>
                 <Text style={{
                     color: "#145DBF"
@@ -99,8 +99,6 @@ let Attendance = () => {
                 showsHorizontalScrollIndicator={false}
                 style={{ 
                     width: "100%",
-                    //marginTop: 20
-                   
                 }}
             />
              

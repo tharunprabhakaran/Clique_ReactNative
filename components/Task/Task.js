@@ -90,14 +90,13 @@ let Task = () => {
         <>
         <View style={{
             margin:15,
-            justifyContent: 'center',
-                alignItems: 'center',
+            
         }}>
             <Text style={{
                 justifyContent: 'center',
                 alignItems: 'center',
                 fontSize: 10,
-                marginVertical: 5
+                margin: "3%"
             }}>
                 <Text style={{
                     color: "#E91E62"
