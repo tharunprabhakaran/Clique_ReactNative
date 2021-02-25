@@ -50,7 +50,7 @@ let TimeTableElement = ({ timeTableObject }) => {
     let currentHour = currentDate.getHours()
     let timeOfTheDay = null
 
-    console.log(currentHour)
+    
     /* Color Matcher */
     if (20 <= currentHour && currentHour < 5) {
         timeOfTheDay = "night"
@@ -68,7 +68,6 @@ let TimeTableElement = ({ timeTableObject }) => {
         timeOfTheDay = "evening"
     }
     else {
-        console.log("elese")
         timeOfTheDay = "noon"
     }
 

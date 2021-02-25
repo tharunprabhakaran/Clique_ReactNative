@@ -24,6 +24,7 @@ import LinearGradient from 'react-native-linear-gradient';
 let TimeTable = require('../TimeTable/TimeTable')
 let Attendance = require('../Attendance/Attendance')
 let Task = require('../Task/Task')
+let Result = require('../Result/Result')
 
 /* Navigation Menu Import */
 let NavigationMenuButtom = require('./MenuButtons')
@@ -32,7 +33,7 @@ let NavigationMenuButtom = require('./MenuButtons')
 let HomeStyle = require("./homeStyle")
 
 
-let updateContent = (val, callingFunction) => {
+let updateContent = (val,  ) => {
   callingFunction(val)
   return
 }
@@ -62,13 +63,13 @@ let componentSwitcher = (componentName) => {
     case "Assist":
       return "Assist"
     case "Result":
-      return "Result"
+      return Result()
   }
 
 }
 
 /* Primary Component */
-const Home: () => React$Node = () => {
+const Home = ({ navigation }) => {
 
   /* Calculate Screen Size */
   const windowWidth = useWindowDimensions().width;
@@ -79,7 +80,10 @@ const Home: () => React$Node = () => {
 
   /* Render JSX */
   return (
-    <>
+    <View style={{
+      backgroundColor: "white",
+      flex:1
+    }}>
       {/* Top Clique Gradient Design */}
       <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#F8B891', '#F7B7C0', '#F89BC2']} style={{
         width: windowWidth,
@@ -150,6 +154,7 @@ const Home: () => React$Node = () => {
             updateContentState={updateContentState}
             primaryText="RESULT"
             secondaryText="Shows results posted by school"
+            globalNavigator={navigation}
             customStyle={{ "backgroundColor": "#5677FC", "icon": faChartBar }}>
           </NavigationMenuButtom>
 
@@ -166,7 +171,7 @@ const Home: () => React$Node = () => {
         </View>
 
       </SafeAreaView>
-    </>
+    </View>
   );
 };
 

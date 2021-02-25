@@ -37,6 +37,3 @@ startingDate.setDate(currentDate.getDate() - currentDate.getDay())
 endingDate = new Date()
 endingDate.setDate(currentDate.getDate() + (6 - currentDate.getDay()))
 
-console.log("Current Day - ", days[currentDate.getDay()], " ---- ", currentDate.getDate())
-console.log("Starting Day - ", days[startingDate.getDay()], " ---- ", startingDate.getDate())
-console.log("Ending Day - ", days[endingDate.getDay()], " ---- ", endingDate.getDate())

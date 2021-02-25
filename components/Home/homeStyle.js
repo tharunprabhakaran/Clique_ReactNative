@@ -7,11 +7,9 @@ import { Dimensions } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const factor = windowHeight / windowWidth
-console.log(windowHeight, "-----", windowWidth)
 const GlobalStyle = StyleSheet.create({
 
     horizontalScrollView: {
-        //backgroundColor: "red",
         flex: 1,
         padding: 10
 

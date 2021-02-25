@@ -32,6 +32,7 @@ let NavigationMenuButtom = (props) => {
     let primaryText = props.primaryText
     let secondaryText = props.secondaryText
     let customeStyle = props.customStyle
+    let globalNavigator = props.globalNavigator 
 
     return (
         <TouchableOpacity style={{
@@ -49,7 +50,7 @@ let NavigationMenuButtom = (props) => {
             padding: 5
 
         }}
-            onPress={() => { updateContent(navigationDestination, updateContentState) }}>
+            onPress={() => { updateContent(navigationDestination, updateContentState, globalNavigator) }}>
 
             <View style={{
                 flex: 2,
