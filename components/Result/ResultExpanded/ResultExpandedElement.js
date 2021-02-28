@@ -15,10 +15,10 @@ let TaskElement = ({ title, navigation }) => {
 
     return (
         <TouchableOpacity
-         onPress = {()=>{
-           
-            navigation.navigate('ResultExpanded', {topic: title.title})
-         }}>
+            onPress={() => {
+
+                navigation.navigate('ResultExpanded', { topic: title.title })
+            }}>
             <LinearGradient
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -31,54 +31,54 @@ let TaskElement = ({ title, navigation }) => {
                     borderWidth: 2,
                     borderRadius: 15,
                     flex: 1,
-                    flexDirection: 'column',
-                    justifyContent: 'space-between'
+                    flexDirection: 'row',
+                   
 
                 }}>
 
-                {/* Topic and Date */}
+                {/* Subject */}
                 <View style={{
-                    flex: 3,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    marginVertical: "5%",
-                    paddingHorizontal: "5%"
-
+                    flex: 2,
                 }}>
-                    {/* Topic */}
+                    {/* Subject */}
                     <View style={{
-                        width: "60%",
+                        flex: 1,
+                        backgroundColor: "green",
+                        justifyContent: "center",
+                        alignContent: "center"
                     }}>
                         <Text ellipsizeMode='tail' numberOfLines={1} style={{
                             fontWeight: "700",
                             color: "#545454",
-                        }}>{title.title}</Text>
+                            textAlign: "center"
+                        }}> {title.title}
+                        </Text>
+
                     </View>
 
-                    {/*  Date */}
-                    <View style={{
-                        //height: "30%"
-                    }} >
-                        <Text style={{
-                            fontWeight: "700",
-                            color: "#FFB684"
-                        }}>{title.date}</Text>
-                    </View>
                 </View>
 
-                {/* Extra Data */}
+                {/*  Mark */}
                 <View style={{
                     flex: 1,
-                    marginBottom: "4%",
-                    paddingHorizontal: "5%"
-
-                }}>
+                    backgroundColor: "red",
+                    justifyContent: "center",
+                    alignContent: "center"
+                }} >
                     <Text style={{
-                        fontWeight: "400",
+                        textAlign: "center",
+                        flex: 3,
+                        fontSize: 30,
+                        fontWeight: "700",
+                        color: "#545454"
+                    }}>95</Text>
+                    <Text style={{
+                         textAlign: "center",
+                        flex: 1,
                         fontSize: 10,
-                        color: "#545454",
-                    }}>{title.subject}</Text>
-
+                        fontWeight: "700",
+                        color: "#545454"
+                    }}>Out of 100</Text>
                 </View>
 
             </LinearGradient>

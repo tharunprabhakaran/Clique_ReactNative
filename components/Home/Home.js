@@ -33,37 +33,24 @@ let NavigationMenuButtom = require('./MenuButtons')
 let HomeStyle = require("./homeStyle")
 
 
-let updateContent = (val,  ) => {
-  callingFunction(val)
+let updateContent = (pathName, callingFunction) => {
+  callingFunction(pathName)
   return
 }
 
-/* Testing Components */
-let sampleTest1 = () => {
+let componentSwitcher = (pathname, globalNavigator) => {
 
-  return (<Text style={{
-    top: 300,
-    left: 150,
-    backgroundColor: "white"
-  }}>
-    "Sample Test 1"
-  </Text>)
-
-}
-
-let componentSwitcher = (componentName) => {
-
-  switch (componentName) {
+  switch (pathname) {
     case "Home":
-      return TimeTable()
+      return TimeTable(globalNavigator)
     case "Task":
-      return Task()
+      return Task(globalNavigator)
     case "Attendance":
-      return Attendance()
+      return Attendance(globalNavigator)
     case "Assist":
       return "Assist"
     case "Result":
-      return Result()
+      return Result(globalNavigator)
   }
 
 }
@@ -154,7 +141,6 @@ const Home = ({ navigation }) => {
             updateContentState={updateContentState}
             primaryText="RESULT"
             secondaryText="Shows results posted by school"
-            globalNavigator={navigation}
             customStyle={{ "backgroundColor": "#5677FC", "icon": faChartBar }}>
           </NavigationMenuButtom>
 
@@ -166,7 +152,7 @@ const Home = ({ navigation }) => {
           flex: 6,
         }}>
 
-          {componentSwitcher(contentState)}
+          {componentSwitcher(contentState, navigation)}
 
         </View>
 

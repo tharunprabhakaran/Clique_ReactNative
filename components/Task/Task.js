@@ -15,7 +15,7 @@ import {
 /* Custom Imports */
 let TaskElement = require('./TaskElement')
 
-let Task = () => {
+let Task = (globalNavigator) => {
 
     /* @TODO Insert User Login Verification logic */
     const DATA = [

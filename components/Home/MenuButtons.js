@@ -34,6 +34,7 @@ let NavigationMenuButtom = (props) => {
     let customeStyle = props.customStyle
     let globalNavigator = props.globalNavigator 
 
+ 
     return (
         <TouchableOpacity style={{
             fontFamily: "Avenir Next",
@@ -50,7 +51,7 @@ let NavigationMenuButtom = (props) => {
             padding: 5
 
         }}
-            onPress={() => { updateContent(navigationDestination, updateContentState, globalNavigator) }}>
+            onPress={() => { updateContent(navigationDestination, updateContentState) }}>
 
             <View style={{
                 flex: 2,

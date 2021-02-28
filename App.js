@@ -33,7 +33,7 @@ import {
 /* Module Import */
 let SplashScreen = require('./components/Splash/Splash')
 let Home = require('./components/Home/Home')
-let ResultExpanded = require('./components/Result/ResultExpanded')
+let ResultExpanded = require('./components/Result/ResultExpanded/ResultExpanded')
 const Stack = createStackNavigator();
 
 
