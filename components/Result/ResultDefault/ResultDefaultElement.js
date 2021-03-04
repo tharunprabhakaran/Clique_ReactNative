@@ -17,7 +17,7 @@ let TaskElement = (prop) => {
     return (
         <TouchableOpacity
          onPress = {()=>{
-            globalNavigator.navigate('ResultExpanded', {title: "Result Expaned"})
+            globalNavigator.navigate('ResultExpanded', {topic: "ResultExpanded"})
          }}>
             <LinearGradient
                 start={{ x: 0, y: 0 }}
@@ -56,9 +56,7 @@ let TaskElement = (prop) => {
                     </View>
 
                     {/*  Date */}
-                    <View style={{
-                        //height: "30%"
-                    }} >
+                    <View>
                         <Text style={{
                             fontWeight: "700",
                             color: "#FFB684"

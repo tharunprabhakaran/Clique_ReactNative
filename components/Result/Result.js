@@ -17,7 +17,6 @@ let ResultElement = require('./ResultDefault/ResultDefaultElement')
 
 let Result = (globalNavigator) => {
 
-//  console.log(globalNavigator)
     /* @TODO Insert User Login Verification logic */
     const DATA = [
         {
@@ -93,9 +92,7 @@ let Result = (globalNavigator) => {
 
     ];
 
-    let navi = "999999"
     const renderLeave = (props) => {
-      
       return (
         <ResultElement data={props.item} globalNavigator={globalNavigator} />
     )};
@@ -126,7 +123,6 @@ let Result = (globalNavigator) => {
                     keyExtractor={item => item.id}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
-                    extraData={[this.state, 99999999]}
                     style={{
                         width: "100%",
 

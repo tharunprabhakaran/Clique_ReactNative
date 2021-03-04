@@ -33,11 +33,13 @@ const SplashScreen = ({ navigation }) => {
       flexDirection: "column",
     }}>
 
+    {/* FIRST COMPONENT */}
       <View
         style={{
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
+          
         }}>
         <Text
           style={{
@@ -48,10 +50,13 @@ const SplashScreen = ({ navigation }) => {
           }}>CLIQUE</Text>
       </View>
 
+      {/* SECOND COMPONENT */}
       <View style={{
-        flex: 1,
+        flex: 2,
         justifyContent: 'center',
         alignItems: 'center',
+        
+        
       }}>
         <Image
           resizeMode='cover'
@@ -65,10 +70,12 @@ const SplashScreen = ({ navigation }) => {
         ></Image>
       </View>
 
+      {/* THIRD COMPONENT */}
       <View style={{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        
 
       }}>
         <Text style={{
