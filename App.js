@@ -34,8 +34,10 @@ import {
 let SplashScreen = require('./components/Splash/Splash')
 let Home = require('./components/Home/Home')
 let ResultExpanded = require('./components/Result/ResultExpanded/ResultExpanded')
-const Stack = createStackNavigator();
+let TaskExpanded = require('./components/Task/TaskExpanded/TaskExpanded')
 
+/* Initilisation */
+const Stack = createStackNavigator();
 
 
 const App = () => {
@@ -50,6 +52,8 @@ const App = () => {
 
           {/* InDirect Components */}
           <Stack.Screen name="ResultExpanded" component={ResultExpanded} options={{headerShown: false, animationEnabled: false }} />
+          <Stack.Screen name="TaskExpanded" component={TaskExpanded} options={{headerShown: false, animationEnabled: false }} />
+
 
     </Stack.Navigator>
   </NavigationContainer>

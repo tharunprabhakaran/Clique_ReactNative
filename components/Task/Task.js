@@ -81,8 +81,8 @@ let Task = (globalNavigator) => {
         },
     ];
 
-    const renderLeave = ({ item }) => (
-        <TaskElement title={item}  />
+    const renderTaskList = ({ item }) => (
+        <TaskElement taskData={item} navigation={globalNavigator} />
     );
 
     /* Render JSX */
@@ -105,7 +105,7 @@ let Task = (globalNavigator) => {
 
             <FlatList
                 data={DATA}
-                renderItem={renderLeave}
+                renderItem={renderTaskList}
                 keyExtractor={item => item.id}
                 showsVerticalScrollIndicator ={false}
                 showsHorizontalScrollIndicator={false}

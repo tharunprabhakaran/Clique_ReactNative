@@ -97,7 +97,7 @@ let ResultExpanded = ({ route, navigation }) => {
     ];
 
     const renderResultExpanded = ({ item }) => (
-        <ResultExpandedElement title={item} navigation={navigation} />
+        <ResultExpandedElement resultData={item} navigation={navigation} />
     );
 
 
@@ -163,9 +163,9 @@ let ResultExpanded = ({ route, navigation }) => {
                     </View>
 
                     {/* Date */}
-                    <TouchableOpacity
+                    <View
                         onPress={() => {
-                            console.log("Date Clicked")
+                            
                         }}
                         style={{
                             flex: 3,
@@ -185,7 +185,7 @@ let ResultExpanded = ({ route, navigation }) => {
                                 color: "#FFFFFF"
                             }}>20-APR-2020</Text>
                         </View>
-                    </TouchableOpacity>
+                    </View>
 
                 </View>
             </LinearGradient>

@@ -11,7 +11,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 
 
-let TaskElement = ({ title, navigation }) => {
+let TaskElement = ({ resultData, navigation }) => {
     let borderColorCode = "#4DC661"
     let colorSelector = Math.floor(Math.random() * Math.floor(2))
     if(colorSelector == 1){ borderColorCode="#FF9D59" }
@@ -20,7 +20,7 @@ let TaskElement = ({ title, navigation }) => {
     return (
         <View
             onPress={() => {
-                navigation.navigate('ResultExpanded', { topic: title.title })
+                navigation.navigate('ResultExpanded', { topic: resultData.title })
             }}>
 
             <LinearGradient
@@ -61,7 +61,7 @@ let TaskElement = ({ title, navigation }) => {
                                 fontSize: 18,
                                 fontWeight: "700",
                                 color: "#545454",
-                            }}> {title.title}
+                            }}> {resultData.title}
                             </Text>
 
                         </View>
