@@ -11,7 +11,8 @@ import {
     Image,
     FlatList,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -21,10 +22,14 @@ let ParentLogin = ({ navigation }) => {
 
 
     return (
-        <View style={{
-            flex:1,
-            alignContent: "center",
-            justifyContent: "center"
+        <KeyboardAvoidingView 
+            keyboardVerticalOffset={-60}
+            behavior={'height'}
+            style={{
+                flex:1,
+                alignContent: "center",
+                justifyContent: "center",
+                backgroundColor: "white"
         }}>
 
             {/* First Component */}
@@ -105,7 +110,8 @@ let ParentLogin = ({ navigation }) => {
                         flex:1,
                         justifyContent: "flex-start",
                         marginTop: "8%",
-                        marginLeft: "25%",
+                        marginLeft: "15%",
+                        
                         
                     }}>
                         <Text style = {{                             
@@ -120,14 +126,15 @@ let ParentLogin = ({ navigation }) => {
 
 
                 </View>
+            
 
 
 
-
+            {/* Enter OTP Row  Component */}  
             <View style={{
                     flex: 1,
                     flexDirection: "row",
-                    justifyContent: "flex-end",
+                    justifyContent: "flex-start",
                     // backgroundColor: "pink",
                 }}>
                     <View style={{
@@ -197,7 +204,7 @@ let ParentLogin = ({ navigation }) => {
                 
             </View>
 
-
+            {/* Management Login Navigation Button Component */}                      
             <View style={{        
                 flex: 5,
                 justifyContent: 'center',
@@ -212,21 +219,21 @@ let ParentLogin = ({ navigation }) => {
 
                     }}
                     >
-                    <TouchableOpacity 
-                    onPress={() => navigation.navigate('Home')}
-                    style={{    
-                        marginRight:120,
-                        marginLeft:120,
-                        marginTop:10,
-                        paddingTop: 10,
-                        paddingBottom:10,
-                        backgroundColor:'#68a0cf',
-                        borderRadius:10,
-                        borderWidth: 1,
-                        borderColor: '#fff'
-                        }}>
-                        <Text style={{ color: "white",textAlign:'center', justifyContent: 'center'}}>Management Sign-In</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity 
+                        onPress={() => navigation.navigate('ManagementLogin')}
+                        style={{    
+                            marginRight:120,
+                            marginLeft:120,
+                            marginTop:10,
+                            paddingTop: 10,
+                            paddingBottom:10,
+                            backgroundColor:'#68a0cf',
+                            borderRadius:10,
+                            borderWidth: 1,
+                            borderColor: '#fff'
+                            }}>
+                            <Text style={{ color: "white",textAlign:'center', justifyContent: 'center'}}>Management Sign-In</Text>
+                        </TouchableOpacity>
                     </View>
 
                     
@@ -234,7 +241,7 @@ let ParentLogin = ({ navigation }) => {
             </View>
         
         
-        </View>
+        </KeyboardAvoidingView>
 
     );
 

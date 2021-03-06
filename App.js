@@ -36,6 +36,7 @@ let Home = require('./components/Home/Home')
 let ResultExpanded = require('./components/Result/ResultExpanded/ResultExpanded')
 let TaskExpanded = require('./components/Task/TaskExpanded/TaskExpanded')
 let ParentLoginScreen = require('./components/Login/ParentLogin')
+let ManagementLogin = require('./components/Login/ManagementLogin')
 /* Initilisation */
 const Stack = createStackNavigator();
 
@@ -50,7 +51,7 @@ const App = () => {
           <Stack.Screen name="Splash" component={SplashScreen} options={{headerShown: false, animationEnabled: false }} />
           <Stack.Screen name="Home" component={Home} options={{headerShown: false, animationEnabled: false }} />
           <Stack.Screen name="ParentLogin" component={ParentLoginScreen} options={{headerShown: false, animationEnabled: false }} />
-
+          <Stack.Screen name="ManagementLogin" component={ManagementLogin} options={{headerShown: false, animationEnabled: false }} />
 
 
           {/* InDirect Components */}
