@@ -115,7 +115,7 @@ let ManagementLogin = ({ navigation }) => {
                 }}>
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate("Home")
+                            navigation.navigate("TeacherHome")
                         }}
                     >
                         <View style={{
