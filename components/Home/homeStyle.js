@@ -12,7 +12,6 @@ const GlobalStyle = StyleSheet.create({
     horizontalScrollView: {
         flex: 1,
         padding: 10
-
     },
     TouchableOpacity: {
         fontFamily: "Avenir Next",

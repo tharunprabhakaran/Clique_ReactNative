@@ -14,320 +14,228 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView
 } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { useWindowDimensions } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 
 let ParentLogin = ({ navigation }) => {
 
+    /* Calculate Screen Size */
+    const windowWidth = useWindowDimensions().width;
+    const windowHeight = useWindowDimensions().height;
 
     return (
-        <KeyboardAvoidingView 
-            keyboardVerticalOffset={-60}
-            behavior={'height'}
-            style={{
-                flex:1,
-                alignContent: "center",
-                justifyContent: "center",
-                backgroundColor: "white"
-        }}>
 
+        /* Deprecated */
+        // <ScrollView
+        //     // keyboardVerticalOffset={-60}
+        //     // behavior={'height'}
+        //     style={{
+        //         flex: 1,
+        //         backgroundColor: "white"
+        //     }}>
+        <View style={{
+            flex: 1,
+            alignContent: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+
+        }}>
             {/* First Component */}
             <View style={{
                 flex: 4,
                 justifyContent: 'flex-end',
                 alignItems: 'center',
-                // backgroundColor: "lime"
             }}>
-                
 
-                    <View style={{
-                        flex: 1,
-                        marginTop: '30%',
-                        justifyContent: "flex-end",
-                        // backgroundColor: "pink"
-                        }}>
-                        {/* <Text style={styles.SignInTextStyle}> SIGN IN </Text> */}
-                        <Text style={{
-                            fontSize: 40,
-                            padding: "4%",
-                            fontFamily: "Avenir Next",
-                            fontSize: 35,
-                            fontWeight: "700"
-                        }}>SIGN IN</Text>
-                    </View>
+                <View style={{
+                    flex: 10,
+                    justifyContent: "flex-end",
+                    alignItems: 'center',
+                }}>
 
-                    <View style={{
-                        flex: 1,
-                        justifyContent: "flex-start"
-                    }}>
-                        <Text style={{
-                            fontSize: 15,
-                            padding: "1%",
-                            fontFamily: "Avenir Next",
-                            fontSize: 12,
-                            fontWeight: "100",
-                            color: "grey",
-                        }}>AS GUARDIAN</Text>
-                    </View>
+                    <Text style={{
+                        textAlign: "center",
+                        fontFamily: "Avenir Next",
+                        fontSize: 35,
+                        fontWeight: "600"
+                    }}>SIGN IN</Text>
+                </View>
+
+                <View style={{
+                    flex: 1,
+                    justifyContent: "flex-start",
+                    alignItems: 'center',
+                }}>
+                    <Text style={{
+                        textAlign: "center",
+                        letterSpacing: 1.3,
+                        fontSize: 12,
+                        fontFamily: "Avenir Next",
+                        fontWeight: "200",
+                        color: "#4A4A4A",
+                    }}>AS GUARDIAN</Text>
+                </View>
 
             </View>
 
             {/* Second Component */}
             <View style={{
-                flex:2,
-                alignContent: "center" ,
-                justifyContent: 'flex-start',
-                // backgroundColor: "pink",
-                }}>
-                    
+                flex: 3,
+                alignContent: "center",
+                justifyContent: 'center',
+            }}>
 
                 <TextInput
-                    placeholder = "Enter Mobile Number"
-                    keyboardType = "numeric"
-                    style={{   
-                    marginLeft: '15%',
-                    padding: '5%',
-                    textAlign: 'center',
-                    height: 60,
-                    width: 275,
-                    borderWidth: 2,
-                    borderColor: '#FFB684',
-                    borderRadius: 20,}}/>
+                    placeholder="Phone Number"
+                    keyboardType="numeric"
+                    style={{
+                        margin: "10%",
+                        paddingVertical: "5%",
+                        paddingHorizontal: "5%",
+                        textAlign: 'left',
+                        borderWidth: 2,
+                        borderColor: '#FFB684',
+                        borderRadius: 20,
+                    }} />
             </View>
 
-            {/* Third Component */}
-
+            {/*  Third Component - Enter OTP Row  Component */}
+            <View style={{
+                flex: 2,
+                flexDirection: "column",
+                justifyContent: "center",
+                alignContent: "center",
+            }}>
+                <View style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignContent: "center",
+                }}>
+                    <Text style={{
+                        padding: "15%",
+                        fontFamily: "Avenir Next",
+                        fontSize: 10,
+                        fontWeight: "300",
+                        color: "#3F3F3F",
+                    }}>ONE TIME PASSWORD</Text>
+                </View>
 
                 <View style={{
                     flex: 2,
-                    justifyContent: "flex-start",
-                    // backgroundColor: "orange"
-
+                    flexDirection: "row"
                 }}>
 
-                    <View style={{
-                        flex:1,
-                        justifyContent: "flex-start",
-                        marginTop: "8%",
-                        marginLeft: "15%",
-                        
-                        
-                    }}>
-                        <Text style = {{                             
-                            fontSize: 15,
-                            padding: "1%",
-                            fontFamily: "Avenir Next",
-                            fontSize: 10,
-                            fontWeight: "100",
-                            color: "grey",}}>ONE TIME PASSWORD</Text>
-                    
-                    </View>
-
-
-                </View>
-            
-
-
-
-            {/* Enter OTP Row  Component */}  
-            <View style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "flex-start",
-                    // backgroundColor: "pink",
-                }}>
                     <View style={{
                         flex: 2,
-                        marginLeft: "15%",
-                        // paddingLeft: "10%",
-                        // marginTop: "2%",
-                        // marginBottom: "5%",
-                        // backgroundColor: "orange",
-                        
+                        justifyContent: "center",
+                        paddingHorizontal: "15%"
+
                     }}>
-                        <TextInput
-                        keyboardType = "numeric"
-                            style={{ 
-                                flexDirection: "row",
-                                borderBottomWidth: 1.5
-                                // borderColor: "blue" 
+
+                        <OTPInputView
+                            pinCount={4}
+                            autoFocusOnLoad
+                            codeInputFieldStyle={{
+                                fontWeight: "600",
+                                borderWidth: 0,
+                                borderBottomWidth: 1,
+                                borderColor: "#FCD5BB",
+                                color: "#FF9D59"
+                            }}
+                            codeInputHighlightStyle={{
+                                borderColor: "#FF9D59",
+                                color: "#FF9D59"
                             }}
 
-                            placeholder="Enter OTP"
-
+                            style={{
+                                color: "#FF9D59",
+                                paddingVertical: "5%",
+                                borderColor: "#FFB684"
+                            }}
                         />
+
                     </View>
 
                     <View style={{
-                        flex:1,
-                        flexDirection: 'column',
+                        flex: 2,
+                        flexDirection: "column",
                         justifyContent: 'center',
-                        // backgroundColor: "pink",
+                        alignContent: "center",
                     }}>
 
-                            <View style={{
-                                flex: 1,
-                                // marginBottom: "7%",
-                                justifyContent: 'center',
-                                padding: '5%'
-                            }}>
-                                    <Text style={{
-                                        fontSize: 35,
-                                        fontWeight: "300",
-                                        textAlign: "center",
-                                        color: '#FFA9B0',
-                                        fontFamily: "Avenir Next"
-                                    }}>1:59</Text>
-                            </View>
+                        <View style={{
+                            flex: 1,
+                            justifyContent: 'flex-end',
+                        }}>
+                            <Text style={{
+                                fontSize: 25,
+                                fontWeight: "400",
+                                textAlign: "center",
+                                color: '#FFB684',
+                                fontFamily: "Avenir Next"
+                            }}>1:59</Text>
+                            
+                        </View>
 
-                            <View style ={{
-                                flex:1,
-                                justifyContent: 'center',
-                                marginLeft: '25%',
-                                padding: '1%'
+                        <View style={{
+                            flex: 1,
+                            justifyContent: 'flex-start',
+                            padding: "5%"
+                        }}>
+                            <TouchableOpacity>
+                                <Text style={{
+                                    fontSize: 10,
+                                    fontWeight: '300',
+                                    color: '#3F3F3F',
+                                    textAlign: "center",
+                                    fontFamily: "Avenir Next",
+                                    // color: '#FFA9B0'
+                                }}>RE-SEND OTP</Text>
+                            </TouchableOpacity>
+                        </View>
 
-                            }}>
-                                    <Text style={{
-                                        fontSize: 10,
-                                        fontWeight: '300',
-                                        color: '#7A7A7A',
-                                        fontFamily: "Avenir Next",
-                                        // color: '#FFA9B0'
-                                    }}>RE-SEND OTP</Text>
-                            </View>
-
-                
                     </View>
+                </View>
 
-
-                
             </View>
 
-            {/* Management Login Navigation Button Component */}                      
-            <View style={{        
+            {/* Management Login Navigation Button Component */}
+            <View style={{
                 flex: 5,
-                justifyContent: 'center',
-                alignContent: 'center'
+            }}>
+                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#F8B891', '#F7B7C0', '#F89BC2']} style={{
+                    flex: 1,
+                    justifyContent: 'flex-end',
+                    alignContent: 'flex-end',
+                    paddingBottom: "9%",
+                    marginTop: "40%",
+                    paddingTop: "5%",
+                    borderTopLeftRadius: 10,
+                    borderTopRightRadius: 10,
                 }}>
-
-
-
-                    <View
-                    style = {{
-                        marginTop: 150
-
-                    }}
-                    >
-                        <TouchableOpacity 
+                    <TouchableOpacity
                         onPress={() => navigation.navigate('ManagementLogin')}
-                        style={{    
-                            marginRight:120,
-                            marginLeft:120,
-                            marginTop:10,
-                            paddingTop: 10,
-                            paddingBottom:10,
-                            backgroundColor:'#68a0cf',
-                            borderRadius:10,
+                        style={{
+                            marginHorizontal: "30%",
+                            backgroundColor: '#FFF7F2',
+                            borderRadius: 10,
                             borderWidth: 1,
-                            borderColor: '#fff'
-                            }}>
-                            <Text style={{ color: "white",textAlign:'center', justifyContent: 'center'}}>Management Sign-In</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    
-
+                            borderColor: '#FFE6CF',
+                            justifyContent: "center",
+                            alignContent: "center"
+                        }}>
+                        <Text style={{ fontSize: 12, color: "#FF9D59", textAlign: 'center', justifyContent: 'center', alignContent: "center", padding: "5%", }}>Management Sign-In</Text>
+                    </TouchableOpacity>
+                </LinearGradient>
             </View>
-        
-        
-        </KeyboardAvoidingView>
+
+        </View >
 
     );
 
 }
-
-const styles = StyleSheet.create({
-
-    MainContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-        flexDirection: "column",
-    },
-    SignInViewStyle: {
-        flex: 5,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        
-    },
-    SignInTextStyle: {
-        fontFamily: "Avenir Next",
-        fontSize: 35,
-        fontWeight: "700",
-    },
-    GuardText: {
-        margin: 10,
-        fontFamily: "Avenir Next",
-        fontSize: 12,
-        fontWeight: "100",
-        color: "grey",
-
-    },
-    underlineStyleHighLighted: {
-        borderColor: "#03DAC6",
-      },
-    underlineStyleBase: {
-        width: 30,
-        height: 45,
-        borderWidth: 0,
-        borderBottomWidth: 1,
-      },
-    TextView: {
-        flex: 1,
-        //justifyContent: 'flex-start',
-        // alignItems: 'center',
-        
-    },
-    TextInputStyleClass: {
-        textAlign: 'center',
-        height: 50,
-        width: 275,
-        borderWidth: 2,
-        borderColor: '#FFB684',
-        borderRadius: 20,
-        // backgroundColor : "#FFFFFF"
-    },
-    OtpView: {
-        flex: 3,
-        // justifyContent: 'center',
-        // alignContent: 'center',
-        // layoutDirection: "LTR"
-        // flexDirection: "row",
-       
-        flexDirection: "column"
-    },
-    OtpTextContainer: {
-        flexDirection: "row",
-        backgroundColor: "pink"
-    },
-
-    OtpTextView: {
-        margin: 10,
-        flex: 2,
-        justifyContent: "center"
-
-
-    },
-    CountdownView: {
-        flex: 1,
-        justifyContent: "flex-start"
-    },
-    BoottomViewStyle: {
-
-        
-    },
-
-});
 
 module.exports = ParentLogin

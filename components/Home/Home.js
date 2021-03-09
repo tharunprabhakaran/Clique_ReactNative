@@ -94,7 +94,6 @@ const Home = ({ navigation }) => {
           style={HomeStyle.GlobalStyle.horizontalScrollView} >
 
           {/* HOME */}
-
           <NavigationMenuButtom
             destination="Home"
             updateContent={updateContent}
