@@ -41,7 +41,6 @@ let ParentLogin = ({ navigation }) => {
             alignContent: "center",
             justifyContent: "center",
             backgroundColor: "white",
-
         }}>
             {/* First Component */}
             <View style={{
@@ -177,7 +176,7 @@ let ParentLogin = ({ navigation }) => {
                                 color: '#FFB684',
                                 fontFamily: "Avenir Next"
                             }}>1:59</Text>
-                            
+
                         </View>
 
                         <View style={{

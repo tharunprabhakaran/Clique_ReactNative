@@ -7,7 +7,7 @@
  */
 
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -42,6 +42,7 @@ const Stack = createStackNavigator();
 
 
 const App = () => {
+
   return (
     <NavigationContainer style={{
       backgroundColor: "white"
@@ -49,7 +50,7 @@ const App = () => {
     <Stack.Navigator style={{backgroundColor: "white"}}>
           {/* Direct Components */}
           <Stack.Screen name="Splash" component={SplashScreen} options={{headerShown: false, animationEnabled: false }} />
-          <Stack.Screen name="Home" component={Home} options={{headerShown: false, animationEnabled: false }} />
+          <Stack.Screen name="Home" component={Home} options={{headerShown: false, animationEnabled: false}} />
           <Stack.Screen name="ParentLogin" component={ParentLoginScreen} options={{headerShown: false, animationEnabled: false }} />
           <Stack.Screen name="ManagementLogin" component={ManagementLogin} options={{headerShown: false, animationEnabled: false }} />
 

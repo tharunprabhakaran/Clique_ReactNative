@@ -2,7 +2,7 @@
  * Attendance Screen Component
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
     SafeAreaView,
@@ -14,8 +14,27 @@ import {
 
 /* Custom Imports */
 let Leave = require('./LeaveElement')
+let APIUtility = require('../APIUtility/APIUtility')
 
 let Attendance = () => {
+
+    //let [dataAtt, setattendanceData] = useState();
+
+    // useEffect(() => {
+    //     getAttendanceData()
+    // }, [])
+
+    // async function getAttendanceData() {
+    //     let API = APIUtility.Initiate()
+    //     let Req = {
+    //         'endpoint': "getAttendance",
+    //         'method': "get",
+    //         'headers': [],
+    //         'body': {}
+    //     }
+    //     let attendance = API.fireAPI(Req)
+    //     setattendanceData(await attendance)
+    // }
 
     /* @TODO Insert User Login Verification logic */
     const DATA = [
@@ -77,34 +96,34 @@ let Attendance = () => {
     /* Render JSX */
     return (
         <>
-        <View style={{
-          margin: 15
-        }}>
-            <Text style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 10,
-                margin: "3%"
+            <View style={{
+                margin: 15
             }}>
                 <Text style={{
-                    color: "#145DBF"
-                }}>Attendance</Text> shows all the Leaves takes by the student, starting from leaves taken recently.
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: 10,
+                    margin: "3%"
+                }}>
+                    <Text style={{
+                        color: "#145DBF"
+                    }}>Attendance</Text> shows all the Leaves takes by the student, starting from leaves taken recently.
           </Text>
 
-            <FlatList
-                data={DATA}
-                renderItem={renderLeave}
-                keyExtractor={item => item.id}
-                showsVerticalScrollIndicator ={false}
-                showsHorizontalScrollIndicator={false}
-                style={{ 
-                    width: "100%",
-                }}
-            />
-             
-        </View>
-       
-    </>
+                <FlatList
+                    data={DATA}
+                    renderItem={renderLeave}
+                    keyExtractor={item => item.id}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    style={{
+                        width: "100%",
+                    }}
+                />
+
+            </View>
+
+        </>
     );
 };
 

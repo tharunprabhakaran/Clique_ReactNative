@@ -10,18 +10,81 @@ const errorLog = console.log
 
 /* API Config SingleTon */
 let APIConfigSingleTon = (function () {
-    var instance;
+    var instance
 
     var config = {
 
         /* Headers */
-        "headers": {}
+        "headers": {},
 
         /* Authentication Headers */
-        "authHeaders": {}
+        "authHeaders": {
+            "TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjIxZTZlNDZkOTk4MDAwZDgwYzExOSIsInByaW1hcnlSb2xlIjoicGFyZW50Iiwic2Vjb25kYXJ5Um9sZSI6IiIsInRpbWVzdGFtcCI6MTYwNTk1OTcwODI5NCwiaWF0IjoxNjA1OTU5NzA4fQ.ziW-Ht0MUK1M9QHakpEPN9mhACeRpytlLsMNp_IUtoI"
+        },
 
         /* Endpoints */
-        "endpoints": {}
+        "endpoints": {
+            "getAttendance": "https://calendar-dot-beaming-crowbar-280314.el.r.appspot.com/attendance"
+        },
+
+        fireAPI: async (urlParameters) => {
+            /**
+            * urlParameters Structure
+            * { 
+            *  "endpoint": "String",
+            *  "method": "String",
+            *  "headers": "Object",
+            *  "body": "Object"
+            * }
+            */
+            try {
+
+                /* Retrive Endpoint */
+                let httpEndpoint = config.endpoints[urlParameters.endpoint]
+
+                /* Build Headers */
+                let httpMethod = urlParameters.method
+
+                /* Default Headers */
+                let headers = {
+                    "Accept": '*/*',
+                    "Connection": 'keep-alive',
+                    "User-Agent": 'CliqueReactNativeClient'
+                }
+
+                /* Adding Custom Parameters */
+                urlParameters.headers.forEach(property => {
+                    if (config.headers[property]) {
+                        headers[property] = config.headers[property]
+                    }
+                });
+
+                /* Merge Authentication Header & Headers */
+                for (let property in config.authHeaders) {
+                    headers[property] = config.authHeaders[property]
+                }
+
+                /* Build Body */
+                //let body = JSON.stringfy(urlParameters.body)
+
+                /* Firing API */
+                let response = await fetch(httpEndpoint, {
+                    method: httpMethod,
+                    headers: headers,
+                    //body: body
+                })
+
+                /* Handle Response */
+                let responseJSON = await response.json();
+                return responseJSON
+
+            } catch (error) {
+                errorLog("Error | Fire API | Error -> ", error)
+                throw { "name": "Generic Fire API", "code": "APIEC001", "error": error.toString() }
+                return false
+            }
+        }
+
     }
 
     /* Instantiate SingleTon */
@@ -34,9 +97,7 @@ let APIConfigSingleTon = (function () {
      * @todo Implement refresh singleton
      * @description Updates all the list of available enpoints 
      */
-    let refreshSingleTon = () => {
-
-    }
+    let refreshSingleTon = () => { }
 
     /**
      * Insert Headers
@@ -176,66 +237,73 @@ let APIConfigSingleTon = (function () {
      */
     let fireAPI = async (urlParameters) => {
 
-    /**
-     * urlParameters Structure
-     * { 
-     *  "endpoint": "String",
-     *  "method": "String",
-     *  "headers": "Object",
-     *  "body": "Object"
-     * }
-     */
-    try {
+        /**
+         * urlParameters Structure
+         * { 
+         *  "endpoint": "String",
+         *  "method": "String",
+         *  "headers": "Object",
+         *  "body": "Object"
+         * }
+         */
+        try {
 
-        /* Retrive Endpoint */
-        let httpEndpoint = config.endpoints[urlParameters.url]
+            /* Retrive Endpoint */
+            let httpEndpoint = config.endpoints[urlParameters.endpoint]
 
-        /* Build Headers */
-        let httpMethod = urlParameters.method
+            /* Build Headers */
+            let httpMethod = urlParameters.method
 
-        /* Default Headers */
-        let headers = {
-            Accept: '*/*',
-            Connection: 'keep-alive',
-            User-Agent: 'CliqueReactNativeClient'
-        }
-
-        /* Adding Custom Parameters */
-        urlParameters.headers.forEach(header => {
-            if (config.headers[header]) {
-                headers[header] = config.headers[header]
+            /* Default Headers */
+            let headers = {
+                "Accept": '*/*',
+                "Connection": 'keep-alive',
+                "User-Agent": 'CliqueReactNativeClient'
             }
-        });
 
-        /* Build Body */
-        let body = JSON.stringfy(urlParameters.body)
+            /* Adding Custom Parameters */
+            urlParameters.headers.forEach(property => {
+                if (config.headers[property]) {
+                    headers[property] = config.headers[property]
+                }
+            });
 
-        /* Firing API */
-        let response = await fetch(endpoint, {
-            method: httpMethod,
-            headers: headers,
-            body: body
-        })
+            /* Merge Authentication Header & Headers */
+            for (let property in config.authHeaders) {
+                headers[property] = config.authHeaders[property]
+            }
 
-        /* Handle Response */
-        let responseJSON = await response.json();
+            /* Build Body */
+            let body = JSON.stringfy(urlParameters.body)
 
-    } catch (error) {
-        errorLog("Error | Fire API | Error -> ",error)
-        return false
-    }
+            /* Firing API */
+            let response = await fetch(endpoint, {
+                method: httpMethod,
+                headers: headers,
+                body: body
+            })
 
-}
-    return {
-    Initiate: function () {
-        if (!instance) {
-            instance = createInstance();
+            /* Handle Response */
+            let responseJSON = await response.json();
+            return
+
+        } catch (error) {
+            errorLog("Error | Fire API | Error -> ", error)
+            throw { "name": "Generic Fire API", "code": "APIEC001", "error": error.toString() }
+            return false
         }
-        return instance;
-    }
 
-};
-}) ();
+    }
+    return {
+        Initiate: function () {
+            if (!instance) {
+                instance = createInstance();
+            }
+            return instance;
+        }
+
+    };
+})();
 
 function isValidURL(str) {
     var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
@@ -245,3 +313,6 @@ function isValidURL(str) {
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
     return !!pattern.test(str);
 }
+
+module.exports = APIConfigSingleTon
+

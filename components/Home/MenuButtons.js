@@ -29,6 +29,8 @@ let NavigationMenuButtom = (props) => {
     let navigationDestination = props.destination
     let updateContent = props.updateContent
     let updateContentState = props.updateContentState
+    let cliquePrimitiveState = props.cliquePrimitiveState
+    let setCliquePrimitiveState = props.setCliquePrimitiveState
     let primaryText = props.primaryText
     let secondaryText = props.secondaryText
     let customeStyle = props.customStyle

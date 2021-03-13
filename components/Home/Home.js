@@ -38,7 +38,7 @@ let updateContent = (pathName, callingFunction) => {
   return
 }
 
-let componentSwitcher = (pathname, globalNavigator) => {
+let componentSwitcher = (pathname, globalNavigator, cliquePrimitiveState, setCliquePrimitiveState) => {
 
   switch (pathname) {
     case "Home":
@@ -47,8 +47,6 @@ let componentSwitcher = (pathname, globalNavigator) => {
       return Task(globalNavigator)
     case "Attendance":
       return Attendance(globalNavigator)
-    case "Assist":
-      return "Assist"
     case "Result":
       return Result(globalNavigator)
   }
@@ -57,6 +55,27 @@ let componentSwitcher = (pathname, globalNavigator) => {
 
 /* Primary Component */
 const Home = ({ navigation }) => {
+
+  /* State Management */
+  let [timeTableData, setTimeTableData] = useState({})
+  let [attendanceData, setAttendanceData] = useState({});
+  let [taskData, setTaskData] = useState({});
+  let [resultData, setResultData] = useState({ "resultList": {}, "resultExpanded": {} })
+
+  let cliquePrimitiveState = {
+    "timeTableData": timeTableData,
+    "attendanceData": attendanceData,
+    "taskData": taskData,
+    "resultData": resultData
+  }
+
+  let setCliquePrimitiveState = {
+    "setTimeTableData": setTimeTableData,
+    "setAttendanceData": setAttendanceData,
+    "setTaskData": setTaskData,
+    "setResultData": setResultData
+  }
+
 
   /* Calculate Screen Size */
   const windowWidth = useWindowDimensions().width;
@@ -69,7 +88,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={{
       backgroundColor: "white",
-      flex:1
+      flex: 1
     }}>
       {/* Top Clique Gradient Design */}
       <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#F8B891', '#F7B7C0', '#F89BC2']} style={{
@@ -98,9 +117,13 @@ const Home = ({ navigation }) => {
             destination="Home"
             updateContent={updateContent}
             updateContentState={updateContentState}
+            cliquePrimitiveState={cliquePrimitiveState}
+            setCliquePrimitiveState={setCliquePrimitiveState}
             primaryText="Home"
             secondaryText="Display stats about the student"
             customStyle={{ "backgroundColor": "#FF9242", "icon": faGlobeAsia }}>
+
+
           </NavigationMenuButtom>
 
           {/* TASK */}
@@ -108,6 +131,8 @@ const Home = ({ navigation }) => {
             destination="Task"
             updateContent={updateContent}
             updateContentState={updateContentState}
+            cliquePrimitiveState={cliquePrimitiveState}
+            setCliquePrimitiveState={setCliquePrimitiveState}
             primaryText="TASK"
             secondaryText="Display the Task's for the student"
             customStyle={{ "backgroundColor": "#E91E62", "icon": faEnvelopeOpen }}>
@@ -118,20 +143,22 @@ const Home = ({ navigation }) => {
             destination="Attendance"
             updateContent={updateContent}
             updateContentState={updateContentState}
+            cliquePrimitiveState={cliquePrimitiveState}
+            setCliquePrimitiveState={setCliquePrimitiveState}
             primaryText="LEAVES"
             secondaryText="Display leave details of the student"
             customStyle={{ "backgroundColor": "#145DBF", "icon": faBell }}>
           </NavigationMenuButtom>
 
           {/* ASSIST */}
-          <NavigationMenuButtom
+          {/* <NavigationMenuButtom
             destination="Assist"
             updateContent={updateContent}
             updateContentState={updateContentState}
             primaryText="ASSIST"
             secondaryText="Post a Query to teacher"
             customStyle={{ "backgroundColor": "#673AB6", "icon": faComments }}>
-          </NavigationMenuButtom>
+          </NavigationMenuButtom> */}
 
           {/* RESULT */}
           <NavigationMenuButtom
@@ -151,7 +178,7 @@ const Home = ({ navigation }) => {
           flex: 6,
         }}>
 
-          {componentSwitcher(contentState, navigation)}
+          {componentSwitcher(contentState, navigation, cliquePrimitiveState, setCliquePrimitiveState )}
 
         </View>
 
