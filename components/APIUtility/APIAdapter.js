@@ -35,7 +35,7 @@ let APIFacade = async (componentName, dataState, setDataState) => {
             }
 
             let attendanceData = await API.fireAPI(Req)
-            console.log(attendanceData)
+            //console.log(attendanceData)
             return attendanceData
             //setDataState(await attendanceData)
             break;

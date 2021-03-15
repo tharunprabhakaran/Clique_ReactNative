@@ -93,10 +93,11 @@ const Home = ({ navigation }) => {
     async function updateState() {
       let data = await APIAdapter(contentState, attendanceData, setAttendanceData)
       setAttendanceData(data)
+      
     }  
     updateState()
 
-  },[]);
+  },[contentState]);
 
   /* Render JSX */
   return (

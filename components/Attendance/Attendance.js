@@ -20,34 +20,8 @@ let Attendance = (globalNavigator, cliquePrimitiveState, setCliquePrimitiveState
 
     
     /* Get State */
-    // let attendanceData = cliquePrimitiveState.attendanceData
-    // let setAttendaceData = setCliquePrimitiveState.setAttendanceData
-
-
-    // let API = APIUtility.Initiate()
-    // let Req = {
-    //     'endpoint': "getAttendance",
-    //     'method': "get",
-    //     'headers': [],
-    //     'body': {}
-    // }
-    // let attendance = API.fireAPI(Req)
-    // attendance.then((data) => {
-    //     //console.log(data)
-    // })
-
-
-    // async function getAttendanceData() {
-    //     let API = APIUtility.Initiate()
-    //     let Req = {
-    //         'endpoint': "getAttendance",
-    //         'method': "get",
-    //         'headers': [],
-    //         'body': {}
-    //     }
-    //     let attendance = API.fireAPI(Req)
-    //     setAttendaceData(await attendance)
-    // }
+    let attendanceData = cliquePrimitiveState.attendanceData
+    // console.log(attendanceData)
 
     /* @TODO Insert User Login Verification logic */
     const DATA = [
