@@ -17,7 +17,7 @@ const SplashScreen = ({ navigation }) => {
 
   /* @TODO Insert User Login Verification logic */
   setTimeout(()=>{
-    navigation.navigate('Home')
+    navigation.navigate('ParentLogin')
     //navigation.navigate('ParentLogin')
   }, 1000)
 
