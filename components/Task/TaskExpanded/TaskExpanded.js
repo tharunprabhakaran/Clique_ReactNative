@@ -3,7 +3,7 @@
  * @description Task Expanded view for the Task screen
  * @author tharunp
  */
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -22,6 +22,10 @@ import { faCloudSun } from '@fortawesome/free-solid-svg-icons'
 let sunIcon = faCloudSun
 
 let TaskExpanded = ({ route, navigation }) => {
+
+    useEffect( () => {
+        console.log("Task Expanded")
+    });
 
     /* Handle Dark Mode */
     let [darkMode, toggleDarkMode] = useState(false)

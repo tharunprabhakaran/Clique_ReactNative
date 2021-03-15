@@ -16,13 +16,26 @@ import {
 let Leave = require('./LeaveElement')
 let APIUtility = require('../APIUtility/APIUtility')
 
-let Attendance = () => {
+let Attendance = (globalNavigator, cliquePrimitiveState, setCliquePrimitiveState) => {
 
-    //let [dataAtt, setattendanceData] = useState();
+    
+    /* Get State */
+    // let attendanceData = cliquePrimitiveState.attendanceData
+    // let setAttendaceData = setCliquePrimitiveState.setAttendanceData
 
-    // useEffect(() => {
-    //     getAttendanceData()
-    // }, [])
+
+    // let API = APIUtility.Initiate()
+    // let Req = {
+    //     'endpoint': "getAttendance",
+    //     'method': "get",
+    //     'headers': [],
+    //     'body': {}
+    // }
+    // let attendance = API.fireAPI(Req)
+    // attendance.then((data) => {
+    //     //console.log(data)
+    // })
+
 
     // async function getAttendanceData() {
     //     let API = APIUtility.Initiate()
@@ -33,7 +46,7 @@ let Attendance = () => {
     //         'body': {}
     //     }
     //     let attendance = API.fireAPI(Req)
-    //     setattendanceData(await attendance)
+    //     setAttendaceData(await attendance)
     // }
 
     /* @TODO Insert User Login Verification logic */

@@ -3,7 +3,7 @@
  */
 
 /* Global React Imports */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWindowDimensions } from 'react-native';
 
 import {
@@ -32,6 +32,8 @@ let NavigationMenuButtom = require('./MenuButtons')
 /* Styling Imports */
 let HomeStyle = require("./homeStyle")
 
+/* API Import */
+let APIAdapter = require('../APIUtility/APIAdapter')
 
 let updateContent = (pathName, callingFunction) => {
   callingFunction(pathName)
@@ -42,13 +44,13 @@ let componentSwitcher = (pathname, globalNavigator, cliquePrimitiveState, setCli
 
   switch (pathname) {
     case "Home":
-      return TimeTable(globalNavigator)
+      return TimeTable(globalNavigator, cliquePrimitiveState, setCliquePrimitiveState)
     case "Task":
-      return Task(globalNavigator)
+      return Task(globalNavigator, cliquePrimitiveState, setCliquePrimitiveState)
     case "Attendance":
-      return Attendance(globalNavigator)
+      return Attendance(globalNavigator, cliquePrimitiveState, setCliquePrimitiveState)
     case "Result":
-      return Result(globalNavigator)
+      return Result(globalNavigator, cliquePrimitiveState, setCliquePrimitiveState)
   }
 
 }
@@ -56,6 +58,7 @@ let componentSwitcher = (pathname, globalNavigator, cliquePrimitiveState, setCli
 /* Primary Component */
 const Home = ({ navigation }) => {
 
+ 
   /* State Management */
   let [timeTableData, setTimeTableData] = useState({})
   let [attendanceData, setAttendanceData] = useState({});
@@ -81,8 +84,19 @@ const Home = ({ navigation }) => {
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
 
-  /* Perform State Management */
+  /* Perform Screen State Management */
   let [contentState, updateContentState] = useState("Home")
+
+  /* Update State */
+  useEffect( () => {
+
+    async function updateState() {
+      let data = await APIAdapter(contentState, attendanceData, setAttendanceData)
+      setAttendanceData(data)
+    }  
+    updateState()
+
+  },[]);
 
   /* Render JSX */
   return (
@@ -178,7 +192,7 @@ const Home = ({ navigation }) => {
           flex: 6,
         }}>
 
-          {componentSwitcher(contentState, navigation, cliquePrimitiveState, setCliquePrimitiveState )}
+          {componentSwitcher(contentState, navigation, cliquePrimitiveState, setCliquePrimitiveState)}
 
         </View>
 

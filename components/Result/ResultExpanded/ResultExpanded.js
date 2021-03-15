@@ -5,7 +5,7 @@
  */
 
 /* React Imports */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     SafeAreaView,
     View,
@@ -30,6 +30,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 let ResultExpanded = ({ route, navigation }) => {
+
+    useEffect( () => {
+        console.log("Worked")
+    });
 
     /* Calculate Screen Size */
     const windowWidth = useWindowDimensions().width;
