@@ -10,7 +10,7 @@ const factor = windowHeight / windowWidth
 const GlobalStyle = StyleSheet.create({
 
     horizontalScrollView: {
-        flex: 1,
+       // flex: 1,
         padding: 10
     },
     TouchableOpacity: {

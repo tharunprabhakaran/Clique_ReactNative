@@ -314,5 +314,6 @@ function isValidURL(str) {
     return !!pattern.test(str);
 }
 
-module.exports = APIConfigSingleTon
+let APIUtility = APIConfigSingleTon.Initiate()
+module.exports = APIUtility
 

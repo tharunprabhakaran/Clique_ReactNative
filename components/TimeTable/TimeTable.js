@@ -62,7 +62,10 @@ let TimeTable = () => {
 
 
     return (
-        <>
+        <View style={{
+            backgroundColor: "white",
+            flex:1
+        }}>
             <View style={{
                 justifyContent: "center",
                 alignContent: "center",
@@ -110,7 +113,7 @@ let TimeTable = () => {
 
                 </View>
             </View>
-        </>
+        </View>
     )
 }
 

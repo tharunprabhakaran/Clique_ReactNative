@@ -25,35 +25,30 @@ const factor = windowHeight / windowWidth
 
 let NavigationMenuButtom = (props) => {
 
-    let style = null
     let navigationDestination = props.destination
-    let updateContent = props.updateContent
-    let updateContentState = props.updateContentState
-    let cliquePrimitiveState = props.cliquePrimitiveState
-    let setCliquePrimitiveState = props.setCliquePrimitiveState
     let primaryText = props.primaryText
     let secondaryText = props.secondaryText
     let customeStyle = props.customStyle
-    let globalNavigator = props.globalNavigator 
-
- 
+    let navigation = props.navigation
+    let destination = props.destination
+   
     return (
         <TouchableOpacity style={{
             fontFamily: "Avenir Next",
             fontWeight: "500",
-            width: factor * 70,
+            width: factor * 60,
+            height: factor * 40,
             borderRadius: 10,
             marginHorizontal: 5,
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: customeStyle.backgroundColor,
-            flex: 2,
             justifyContent: 'center',
             alignItems: 'center',
             padding: 5
 
         }}
-            onPress={() => { updateContent(navigationDestination, updateContentState) }}>
+            onPress={() => { navigation.navigate(destination) }}>
 
             <View style={{
                 flex: 2,
@@ -62,12 +57,12 @@ let NavigationMenuButtom = (props) => {
             }}>
                 <Text adjustsFontSizeToFit style={{
                     fontFamily: "Avenir Next",
-                    fontSize: factor* 8,
+                    fontSize: factor * 8,
                     fontWeight: "500",
                     color: "white",
                 }}>
                     <FontAwesomeIcon icon={customeStyle.icon} style={{ color: "white" }} />  {primaryText}
-              </Text>
+                </Text>
             </View>
 
             <View adjustsFontSizeToFit style={{
@@ -78,7 +73,7 @@ let NavigationMenuButtom = (props) => {
             }}>
                 <Text style={{
                     fontFamily: "Avenir Next",
-                    fontSize: factor*4.5,
+                    fontSize: factor * 4.5,
                     fontWeight: "500",
                     color: "white",
                     textAlign: "center"

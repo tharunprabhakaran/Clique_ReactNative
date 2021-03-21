@@ -15,76 +15,33 @@ import {
 /* Custom Imports */
 let Leave = require('./LeaveElement')
 let APIUtility = require('../APIUtility/APIUtility')
+let AttendaceAPI = require('./Api/AttendanceAPI')
 
-let Attendance = (globalNavigator, cliquePrimitiveState, setCliquePrimitiveState) => {
+let Attendance = (globalNavigator) => {
 
-    
     /* Get State */
-    let attendanceData = cliquePrimitiveState.attendanceData
-    // console.log(attendanceData)
+    let [attendanceData, updateAttendanceData] = useState({})
 
-    /* @TODO Insert User Login Verification logic */
-    const DATA = [
-        {
-            id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-            title: 'Casual Leave',
-            date: "03-01-2021"
-        },
-        {
-            id: '3ac68afc-c605-48d3-a4f8-fbd31aa97f63',
-            title: 'Sick Leave',
-            date: "01-01-2021"
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d72',
-            title: 'Casual Leave',
-            date: "14-12-2020"
-        },
-        {
-            id: '58694a0f-3uda1-471f-bd96-145571e21d72',
-            title: 'On Duty',
-            date: "07-12-2020"
-        },
-        {
-            id: '58694a0f-3dqga1-471f-bd96-145571e29d22',
-            title: 'Casual Leave',
-            date: "15-11-2020"
-        },
-        {
-            id: '58694a0f-3dwa1-471f-bd96-145571e29d32',
-            title: 'Sick Leave',
-            date: "01-10-2020"
-        },
-        {
-            id: '58694a0f-3dfa1-471f-bd96-145571e29d32',
-            title: 'Sick Leave',
-        },
-        {
-            id: '586w94a0f-3da1-471f-bd96-1w5571e29d32',
-            title: 'Sick Leave',
-            date: "02-09-2020"
-        },
-        {
-            id: '58694a0f-3dda1-471f-bd96-145r71e29d32',
-            title: 'Sick Leave',
-            date: "21-05-2020"
-        },
-        {
-            id: '58694asf-3da1-471f-bd96-g45571e29d32',
-            title: 'Sick Leave',
-            date: "12-04-2020"
-        },
-    ];
+    useEffect(() => {
+        try {
+            AttendaceAPI.getAttendanceDataAPI(updateAttendanceData)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
 
-    const renderLeave = ({ item }) => (
-        <Leave title={item.title} />
+
+    const renderLeave = (item) => (
+        <Leave extraData={item} />
     );
 
     /* Render JSX */
     return (
-        <>
+        <View style={{
+            backgroundColor: "white"
+        }}>
             <View style={{
-                margin: 15
+                margin: "3%",
             }}>
                 <Text style={{
                     justifyContent: 'center',
@@ -98,9 +55,9 @@ let Attendance = (globalNavigator, cliquePrimitiveState, setCliquePrimitiveState
           </Text>
 
                 <FlatList
-                    data={DATA}
+                    data={attendanceData}
                     renderItem={renderLeave}
-                    keyExtractor={item => item.id}
+                    keyExtractor={attendanceData => attendanceData._id}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     style={{
@@ -110,7 +67,7 @@ let Attendance = (globalNavigator, cliquePrimitiveState, setCliquePrimitiveState
 
             </View>
 
-        </>
+        </View>
     );
 };
 

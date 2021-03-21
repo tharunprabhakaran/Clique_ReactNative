@@ -10,8 +10,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 
-let Leave = ({ title }) => {
-
+let Leave = ({ extraData }) => {
+    
     return (
         <LinearGradient
             start={{ x: 0, y: 0 }}
@@ -32,7 +32,7 @@ let Leave = ({ title }) => {
                             padding: "5%",
                             fontWeight: "700",
                             color: "#545454",
-                        }}>{title}</Text>
+                        }}>{extraData.item.type}</Text>
                 </View>
 
                 <View 
@@ -43,25 +43,9 @@ let Leave = ({ title }) => {
                         <Text style ={{
                             fontWeight: "700",
                             color: "#FFB684"
-                        }}>04-01-2012</Text>
+                        }}>{extraData.item.date}</Text>
                 </View>
                 
-            {/* <Text style={{
-                // marginLeft: 30,
-            // marginTop: 15,
-                fontWeight: "700",
-                color: "#545454",
-            }}>{title}</Text>
-
-            <Text style={{
-                // marginLeft: 80,
-                //marginTop: 15,
-                fontWeight: "700",
-                color: "#545454",
-                textAlign: 'right',
-                alignSelf: 'flex-end',
-                
-            }}>Date</Text> */}
         </LinearGradient>
     )
 }

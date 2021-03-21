@@ -87,37 +87,39 @@ let Task = (globalNavigator) => {
 
     /* Render JSX */
     return (
-        <>
         <View style={{
-            margin:15,
-            
+            backgroundColor: "white"
         }}>
-            <Text style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontSize: 10,
-                margin: "3%"
+            <View style={{
+                margin: 15,
+
             }}>
                 <Text style={{
-                    color: "#E91E62"
-                }}>Task</Text> shows all the Leaves takes by the student, starting from leaves taken recently.
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: 10,
+                    margin: "3%"
+                }}>
+                    <Text style={{
+                        color: "#E91E62"
+                    }}>Task</Text> shows all the Leaves takes by the student, starting from leaves taken recently.
           </Text>
 
-            <FlatList
-                data={DATA}
-                renderItem={renderTaskList}
-                keyExtractor={item => item.id}
-                showsVerticalScrollIndicator ={false}
-                showsHorizontalScrollIndicator={false}
-                style={{ 
-                    width: "100%",
-                   
-                }}
-            />
-             
+                <FlatList
+                    data={DATA}
+                    renderItem={renderTaskList}
+                    keyExtractor={item => item.id}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    style={{
+                        width: "100%",
+
+                    }}
+                />
+
+            </View>
+
         </View>
-       
-    </>
     );
 };
 
