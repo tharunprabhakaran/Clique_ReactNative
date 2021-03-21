@@ -15,7 +15,7 @@ import {
 /* Custom Imports */
 let TaskElement = require('./TaskElement')
 
-let Task = (globalNavigator) => {
+let Task = (props) => {
 
     /* @TODO Insert User Login Verification logic */
     const DATA = [
@@ -82,7 +82,7 @@ let Task = (globalNavigator) => {
     ];
 
     const renderTaskList = ({ item }) => (
-        <TaskElement taskData={item} navigation={globalNavigator} />
+        <TaskElement taskData={item} navigation={props.globalNavigator} />
     );
 
     /* Render JSX */

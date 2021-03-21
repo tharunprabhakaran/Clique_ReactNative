@@ -15,7 +15,7 @@ import {
 /* Custom Imports */
 let ResultElement = require('./ResultDefault/ResultDefaultElement')
 
-let Result = (globalNavigator) => {
+let Result = (props) => {
 
     /* @TODO Insert User Login Verification logic */
     const DATA = [
@@ -92,9 +92,9 @@ let Result = (globalNavigator) => {
 
     ];
 
-    const renderLeave = (props) => {
+    const renderResultElement = (resultData) => {
       return (
-        <ResultElement data={props.item} globalNavigator={globalNavigator} />
+        <ResultElement data={resultData.item} globalNavigator={props.globalNavigator} />
     )};
 
     /* Render JSX */
@@ -119,7 +119,7 @@ let Result = (globalNavigator) => {
 
                 <FlatList
                     data={DATA}
-                    renderItem={renderLeave}
+                    renderItem={renderResultElement}
                     keyExtractor={item => item.id}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}

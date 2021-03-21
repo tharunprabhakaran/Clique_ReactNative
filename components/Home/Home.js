@@ -85,9 +85,9 @@ const Home = ({ navigation }) => {
             tabBar={(props) => <HomeTabScrollBar {...props}></HomeTabScrollBar>}
           >
             <Tab.Screen name="TimeTable" component={TimeTable} />
-            <Tab.Screen name="Task" component={Task} />
-            <Tab.Screen name="Attendance" component={Attendance} />
-            <Tab.Screen name="Result" component={Result} />
+            <Tab.Screen name="Task" children={(props) => (<Task {...props} globalNavigator={navigation}></Task>)} />
+            <Tab.Screen name="Attendance" children={(props) => (<Attendance {...props} globalNavigator={navigation}></Attendance>)}  />
+            <Tab.Screen name="Result" children={(props) => (<Result {...props} globalNavigator={navigation}></Result>)}   />
           </Tab.Navigator>
         </View>
 
