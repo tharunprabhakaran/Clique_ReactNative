@@ -19,12 +19,16 @@ let APIConfigSingleTon = (function () {
 
         /* Authentication Headers */
         "authHeaders": {
-            "TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjIxZTZlNDZkOTk4MDAwZDgwYzExOSIsInByaW1hcnlSb2xlIjoicGFyZW50Iiwic2Vjb25kYXJ5Um9sZSI6IiIsInRpbWVzdGFtcCI6MTYwNTk1OTcwODI5NCwiaWF0IjoxNjA1OTU5NzA4fQ.ziW-Ht0MUK1M9QHakpEPN9mhACeRpytlLsMNp_IUtoI"
+            "ACCESS_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZ29kIiwicHJpbWFyeVJvbGUiOiJ0ZWFjaGVyIiwic2Vjb25kYXJ5Um9sZSI6IiIsInRpbWVzdGFtcCI6MTYxODQyNzc5MDM4MiwiaWQiOiI2MDVlMzZhNTlkODA4YTBmNTFjZTdmNGEiLCJzY2hvb2xJRCI6IjYwNWRmMjY4MThjNmNkMGE4Zjg2ODQyMCIsImlhdCI6MTYxODQyNzc5MH0.6nXD1rMJDRoh7XtEUGzN_qNCY4yieluzs1ZfyCQFI8w"
         },
 
         /* Endpoints */
         "endpoints": {
-            "getAttendance": "https://calendar-dot-beaming-crowbar-280314.el.r.appspot.com/attendance"
+            "getSubject": "http://localhost:9000/subject",
+            "getAttendance": "http://localhost:9001/attendance",
+            "getTask": "http://localhost:9002/task",
+            "getResult": "http://localhost:9003/result",
+            
         },
 
         fireAPI: async (urlParameters) => {
@@ -34,6 +38,7 @@ let APIConfigSingleTon = (function () {
             *  "endpoint": "String",
             *  "method": "String",
             *  "headers": "Object",
+            *  "queryParameters": "Object",
             *  "body": "Object"
             * }
             */
@@ -44,6 +49,27 @@ let APIConfigSingleTon = (function () {
 
                 /* Build Headers */
                 let httpMethod = urlParameters.method
+
+                /**
+                 * Adding Query Parameter
+                 * 1. Combine Query Parameters to queryString
+                 * 2. Append queryString to the httpEndpoint
+                 * 3. Encode URI - httpEndpoint
+                 */
+
+                let queryString = ""
+                for (const query in urlParameters.queryParameters) {
+                    queryString = `${queryString}&${query}=${urlParameters.queryParameters[query]}`
+                }
+
+                if (queryString != "" || queryString == null) {
+                    httpEndpoint = httpEndpoint + "?" + queryString.substring(1)
+
+                    /* Encode URI */
+                    httpEndpoint = encodeURI(httpEndpoint)
+                }
+
+
 
                 /* Default Headers */
                 let headers = {
@@ -64,8 +90,7 @@ let APIConfigSingleTon = (function () {
                     headers[property] = config.authHeaders[property]
                 }
 
-                /* Build Body */
-                //let body = JSON.stringfy(urlParameters.body)
+                /* @TODO Build Body */
 
                 /* Firing API */
                 let response = await fetch(httpEndpoint, {
@@ -84,7 +109,6 @@ let APIConfigSingleTon = (function () {
                 return false
             }
         }
-
     }
 
     /* Instantiate SingleTon */

@@ -16,7 +16,7 @@ let TaskElement = ({ taskData, navigation }) => {
     return (
         <TouchableOpacity
             onPress={() => {
-                navigation.navigate("TaskExpanded", {taskData: "Expanded Task View"})
+                navigation.navigate("TaskExpanded", {taskData: taskData})
             }}
         >
             <LinearGradient
@@ -62,7 +62,7 @@ let TaskElement = ({ taskData, navigation }) => {
                         <Text style={{
                             fontWeight: "700",
                             color: "#FFB684"
-                        }}>{taskData.date}</Text>
+                        }}>{taskData.timeStamp}</Text>
                     </View>
                 </View>
 
@@ -77,7 +77,7 @@ let TaskElement = ({ taskData, navigation }) => {
                         fontWeight: "400",
                         fontSize: 10,
                         color: "#545454",
-                    }}>{taskData.subject}</Text>
+                    }}>{taskData.authorRole}</Text>
 
                 </View>
 

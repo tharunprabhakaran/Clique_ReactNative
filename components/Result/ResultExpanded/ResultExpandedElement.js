@@ -7,16 +7,28 @@ import {
     Image
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
 import LinearGradient from 'react-native-linear-gradient';
 
 
 let TaskElement = ({ resultData, navigation }) => {
-    let borderColorCode = "#4DC661"
-    let colorSelector = Math.floor(Math.random() * Math.floor(2))
-    if(colorSelector == 1){ borderColorCode="#FF9D59" }
 
-    
+    /**
+     * Calculate Result Border color 
+     * 1. If marks is less than the Pass mark -> #FF9D59
+     * 2. If marks is greater than the Pass mark -> #4DC661
+     */
+
+    /* Passing Color */
+    let borderColorCode = "#4DC661"
+
+    /* Calculate Pass Mark */
+    let calcualtePassMark = (resultData.fullMark * (resultData.passPercentage / 100))
+
+    /* Failing Color */
+    if (resultData.marks < calcualtePassMark) { borderColorCode = "#FF9D59" }
+
+
+    /* Return JSX */
     return (
         <View
             onPress={() => {
@@ -36,15 +48,13 @@ let TaskElement = ({ resultData, navigation }) => {
                     borderRadius: 15,
                     flex: 1,
                     flexDirection: 'row',
-
-
                 }}>
 
                 <View style={{
-                    flex:1,
+                    flex: 1,
                     flexDirection: 'row',
                     margin: "4%"
-                }}> 
+                }}>
                     {/* Subject */}
                     <View style={{
                         flex: 2,
@@ -55,23 +65,20 @@ let TaskElement = ({ resultData, navigation }) => {
                             justifyContent: "center",
                             alignContent: "flex-end",
                             paddingStart: "20%",
-                            //paddingEnd: "20%"
                         }}>
                             <Text ellipsizeMode='tail' numberOfLines={1} style={{
                                 fontSize: 18,
                                 fontWeight: "700",
                                 color: "#545454",
-                            }}> {resultData.title}
+                            }}> {resultData._id}
                             </Text>
-
+                            
                         </View>
-
                     </View>
 
                     {/*  Mark */}
                     <View style={{
                         flex: 1,
-                        //backgroundColor: "red",
                         justifyContent: "center",
                         alignContent: "center"
                     }} >
@@ -81,14 +88,17 @@ let TaskElement = ({ resultData, navigation }) => {
                             fontSize: 30,
                             fontWeight: "700",
                             color: "#545454"
-                        }}>95</Text>
+                        }}> {resultData.marks}
+                        </Text>
+
                         <Text style={{
                             textAlign: "center",
                             flex: 1,
                             fontSize: 10,
                             fontWeight: "700",
                             color: "#545454"
-                        }}>Out of 100</Text>
+                        }}>Out of {resultData.fullMark}
+                        </Text>
                     </View>
                 </View>
 

@@ -11,14 +11,17 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 
 
-let TaskElement = (prop) => {
+let ResultDefaultElement = (prop) => {
 
+
+    let resultData = prop.resultData
     let globalNavigator = prop.globalNavigator
+
     return (
         <TouchableOpacity
-         onPress = {()=>{
-            globalNavigator.navigate('ResultExpanded', {topic: "ResultExpanded"})
-         }}>
+            onPress={() => {
+                globalNavigator.navigate('ResultExpanded', { topic: "ResultExpanded", resultData: resultData })
+            }}>
             <LinearGradient
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -52,7 +55,7 @@ let TaskElement = (prop) => {
                         <Text ellipsizeMode='tail' numberOfLines={1} style={{
                             fontWeight: "700",
                             color: "#545454",
-                        }}>{prop.data.title}</Text>
+                        }}>{resultData._id}</Text>
                     </View>
 
                     {/*  Date */}
@@ -60,7 +63,7 @@ let TaskElement = (prop) => {
                         <Text style={{
                             fontWeight: "700",
                             color: "#FFB684"
-                        }}>{prop.data.date}</Text>
+                        }}>{resultData.postedDate}</Text>
                     </View>
                 </View>
 
@@ -75,7 +78,7 @@ let TaskElement = (prop) => {
                         fontWeight: "400",
                         fontSize: 10,
                         color: "#545454",
-                    }}>{prop.data.subject}</Text>
+                    }}>{resultData.subject}</Text>
 
                 </View>
 
@@ -84,4 +87,4 @@ let TaskElement = (prop) => {
     )
 }
 
-module.exports = TaskElement
+module.exports = ResultDefaultElement

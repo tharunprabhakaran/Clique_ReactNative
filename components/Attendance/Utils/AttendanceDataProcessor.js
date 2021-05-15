@@ -5,9 +5,9 @@
  */
 
 let AttendanceDataProcessor = (attendanceRawData) => {
-
-
+    
     attendanceRawData.payLoad.forEach(element => {
+
         element.type = element.type.toString()
 
         /* 1. Make the First Character Upper Case - reason */
@@ -24,12 +24,5 @@ let AttendanceDataProcessor = (attendanceRawData) => {
 
 }
 
-let UnitTest = {
-    payLoad: [
-        { "reason": "tharun", "date": "2020-12-12T00:00:00.000Z" }, { "reason": "tharun" }
-    ]
-}
-
-//console.log(AttendanceDataProcessor(UnitTest))
 
 module.exports = AttendanceDataProcessor

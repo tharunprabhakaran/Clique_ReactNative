@@ -16,21 +16,25 @@ import {
 let Leave = require('./LeaveElement')
 let APIUtility = require('../APIUtility/APIUtility')
 let AttendaceAPI = require('./Api/AttendanceAPI')
+let AttendanceFooter = require('./AttendanceFooter')
 
 let Attendance = (globalNavigator) => {
 
     /* Get State */
-    let [attendanceData, updateAttendanceData] = useState({})
+    let [attendanceData, updateAttendanceData] = useState([])
 
+    /* Component Init */
     useEffect(() => {
-        try {
-            AttendaceAPI.getAttendanceDataAPI(updateAttendanceData)
-        } catch (error) {
-            console.log(error)
-        }
+
+        AttendaceAPI.getAttendanceDataAPI(updateAttendanceData)
+            .catch((error) => {
+                updateAttendanceData([])
+            })
+
     }, [])
 
 
+    /* Render Leave Element */
     const renderLeave = (item) => (
         <Leave extraData={item} />
     );
@@ -57,15 +61,19 @@ let Attendance = (globalNavigator) => {
                 <FlatList
                     data={attendanceData}
                     renderItem={renderLeave}
-                    keyExtractor={attendanceData => attendanceData._id}
+                    keyExtractor={item => item._id}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
+
                     style={{
                         width: "100%",
+                        marginBottom: "10%"
                     }}
                 />
 
             </View>
+
+            <AttendanceFooter></AttendanceFooter>
 
         </View>
     );

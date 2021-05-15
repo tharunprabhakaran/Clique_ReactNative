@@ -32,7 +32,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 let ResultExpanded = ({ route, navigation }) => {
 
     useEffect( () => {
-        console.log("Worked")
+        
     });
 
     /* Calculate Screen Size */
@@ -41,70 +41,15 @@ let ResultExpanded = ({ route, navigation }) => {
 
     /* Parse Route for Data */
     let routeData = route.params
-
+    
     /* Handle Data */
-    const DATA = [
-        {
-            id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-            title: 'Half-Yearly',
-            date: "03-01-2021",
-            subject: "Click to view"
-        },
-        {
-            id: '3ac68afc-c605-48d3-a4f8-fbd31aa97f63',
-            title: 'Quarter-Yearly',
-            date: "01-01-2021",
-            subject: "Click to view"
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d72',
-            title: 'Unit Test - II',
-            date: "14-12-2020",
-            subject: "Click to view"
-        },
-        {
-            id: '58694a0f-3uda1-471f-bd96-145571e21d72',
-            title: 'Mid-Term',
-            date: "07-12-2020",
-            subject: "Click to view"
-        },
-        {
-            id: '58694a0f-3dqdfgbqaga1-471f-bd96-145571e29d22',
-            title: 'Unit Test - I',
-            date: "15-11-2020",
-            subject: "Click to view"
-        },
-        {
-            id: '58694a0f-3dqadfbdhga1-471f-bd96-145571e29d22',
-            title: 'Unit Test - I',
-            date: "15-11-2020",
-            subject: "Click to view"
-        },
-        {
-            id: '58694a0f-3dqga1-471f-bd96-145571easdf29d22',
-            title: 'Unit Test - I',
-            date: "15-11-2020",
-            subject: "Click to view"
-        },
-        {
-            id: '58694aa0f-3dqga1-471f-bas96-145adf571e29d22',
-            title: 'Unit Test - I',
-            date: "15-11-2020",
-            subject: "Click to view"
-        },
-        {
-            id: '5869d4a0f-3dqga1-471f-bd96-14adf5571e29d22',
-            title: 'Unit Test - I',
-            date: "15-11-2020",
-            subject: "Click to view"
-        }
-    ];
+    let resultData = routeData.resultData.result
 
     const renderResultExpanded = ({ item }) => (
         <ResultExpandedElement resultData={item} navigation={navigation} />
     );
 
-
+    /* Render JSX */
     return (
         <View style={{
             backgroundColor: "white",
@@ -203,9 +148,9 @@ let ResultExpanded = ({ route, navigation }) => {
 
                 }}>
                 <FlatList
-                    data={DATA}
+                    data={resultData}
                     renderItem={renderResultExpanded}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item._id}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     navigation={navigation}
@@ -213,8 +158,6 @@ let ResultExpanded = ({ route, navigation }) => {
 
                 />
             </View>
-
-
         </View>
     )
 }

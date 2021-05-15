@@ -23,7 +23,7 @@ let ResultExpandedFooter = (props) => {
             textAlign: "center",
             padding: "5%",
             color: "grey"
-        }}> - That's All Folks -</Text>
+        }}> - End -</Text>
         <Button
             title="Back"
             onPress={() => {
