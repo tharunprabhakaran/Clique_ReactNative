@@ -70,7 +70,7 @@ let TaskElement = ({ resultData, navigation }) => {
                                 fontSize: 18,
                                 fontWeight: "700",
                                 color: "#545454",
-                            }}> {resultData._id}
+                            }}> {resultData.subjectName}
                             </Text>
                             
                         </View>

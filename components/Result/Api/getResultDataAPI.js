@@ -5,38 +5,35 @@
  */
 
 /* Import */
-let APIUtility = require('../../APIUtility/APIUtility')
-let ResultDataProcessor = require('../Utils/ResultDataProcessor')
-
+let APIUtility = require('../../APIUtility/APIUtility');
+let ResultDataProcessor = require('../Utils/ResultDataProcessor');
 
 let getResultData = async (updateStateHandle) => {
-    try {
+  try {
+    let requestStructure = {
+      endpoint: 'getResult',
+      method: 'GET',
+      headers: [],
+    };
 
-        let requestStrucuture = {
-            "endpoint": "getResult",
-            "method": "GET",
-            "headers": []
-        }
+    var resultFetch = await APIUtility.fireAPI(requestStructure);
 
-        var resultFetch = await APIUtility.fireAPI(requestStrucuture)
-
-        /* Check for API Respons Status */
-        if (resultFetch.status != "success" || resultFetch.payLoadType != "array") {
-            throw "Failure response from server"
-        }
-
-        /* Process Data */
-        resultFetch = await ResultDataProcessor(resultFetch)
-
-        //console.log(resultFetch.payLoad[0].result)
-
-        /* Update State */
-        updateStateHandle(resultFetch.payLoad)
-
-    } catch (error) {
-        console.log("Error in Data Fetch -> ", error)
-        throw error
+    /* Check for API Response Status */
+    if (
+      resultFetch.status !== 'success' ||
+      resultFetch.payLoadType != 'array'
+    ) {
+      throw 'Failure response from server';
     }
-}
 
-module.exports = getResultData
+    /* Process Data */
+    resultFetch = await ResultDataProcessor(resultFetch);
+
+    /* Update State */
+    updateStateHandle(resultFetch);
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = getResultData;

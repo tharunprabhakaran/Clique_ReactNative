@@ -44,18 +44,21 @@ let ResultDefaultElement = (prop) => {
                     flex: 3,
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    marginVertical: "5%",
-                    paddingHorizontal: "5%"
+                    marginVertical: "8%",
+                    paddingHorizontal: "5%",
+                   
 
                 }}>
                     {/* Topic */}
                     <View style={{
                         width: "60%",
+                        
                     }}>
                         <Text ellipsizeMode='tail' numberOfLines={1} style={{
+                            fontSize: 16,
                             fontWeight: "700",
                             color: "#545454",
-                        }}>{resultData._id}</Text>
+                        }}>{resultData.assessmentName}</Text>
                     </View>
 
                     {/*  Date */}
@@ -68,10 +71,11 @@ let ResultDefaultElement = (prop) => {
                 </View>
 
                 {/* Extra Data */}
-                <View style={{
+                {/* <View style={{
                     flex: 1,
                     marginBottom: "4%",
-                    paddingHorizontal: "5%"
+                    paddingHorizontal: "5%",
+                    backgroundColor: "red"
 
                 }}>
                     <Text style={{
@@ -80,7 +84,7 @@ let ResultDefaultElement = (prop) => {
                         color: "#545454",
                     }}>{resultData.subject}</Text>
 
-                </View>
+                </View> */}
 
             </LinearGradient>
         </TouchableOpacity>

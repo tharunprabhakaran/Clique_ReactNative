@@ -43,7 +43,8 @@ let ResultExpanded = ({ route, navigation }) => {
     let routeData = route.params
     
     /* Handle Data */
-    let resultData = routeData.resultData.result
+    // let resultData = routeData.resultData.result
+    let resultData = routeData.resultData
 
     const renderResultExpanded = ({ item }) => (
         <ResultExpandedElement resultData={item} navigation={navigation} />
@@ -129,10 +130,10 @@ let ResultExpanded = ({ route, navigation }) => {
 
                                 textAlign: "center",
                                 letterSpacing: 1,
-                                fontSize: 15,
-                                fontWeight: "200",
+                                fontSize: 17,
+                                fontWeight: "400",
                                 color: "#FFFFFF"
-                            }}>20-APR-2020</Text>
+                            }}>{resultData.postedDate}</Text>
                         </View>
                     </View>
 
@@ -148,7 +149,7 @@ let ResultExpanded = ({ route, navigation }) => {
 
                 }}>
                 <FlatList
-                    data={resultData}
+                    data={resultData.result}
                     renderItem={renderResultExpanded}
                     keyExtractor={item => item._id}
                     showsVerticalScrollIndicator={false}

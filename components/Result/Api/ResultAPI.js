@@ -1,5 +1,5 @@
-let getResultDataAPI = require('./getResultDataAPI')
+let getResultDataAPI = require('./getResultDataAPI');
 
 module.exports = {
-    getResultDataAPI
-}
+  getResultDataAPI,
+};

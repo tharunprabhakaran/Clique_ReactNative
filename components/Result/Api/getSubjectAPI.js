@@ -5,32 +5,52 @@
  */
 
 /* Import */
-let APIUtility = require('../../APIUtility/APIUtility')
+let APIUtility = require('../../APIUtility/APIUtility');
 
 let getSubjectData = async (queryParams, updateStateHandle) => {
+  try {
+    let requestStrucuture = {
+      endpoint: 'getSubject',
+      method: 'GET',
+      headers: [],
+      queryParameters: queryParams,
+    };
 
-    try {
+    /* Fire Subject API */
+    let subjectFetch = await APIUtility.fireAPI(requestStrucuture);
 
-        let requestStrucuture = {
-            "endpoint": "getSubject",
-            "method": "GET",
-            "headers": [],
-            "queryParameters": queryParams
-        }
+    /* Process Response */
+    let processedSubject = subjectProcessor(subjectFetch);
 
-        let subjectFetch = await APIUtility.fireAPI(requestStrucuture)
-
-        if (updateStateHandle != null) {
-            updateStateHandle(subjectFetch.payLoad)
-            return
-        } else {
-            return subjectFetch
-        }
-
-    } catch (error) {
-        console.log("Error in Data Fetch -> ", error)
-        throw error
+    /* Handle Processed Data */
+    if (updateStateHandle != null) {
+      updateStateHandle(processedSubject);
+      return;
+    } else {
+      return processedSubject;
     }
-}
+  } catch (error) {
+    return {data: null, error: error};
+  }
+};
 
-module.exports = getSubjectData
+let subjectProcessor = (subjectResponse) => {
+  /**
+   * Process Subject Data
+   * 1. Check for Errors in Subject Response
+   * 2. Add only Payload to the response
+   */
+  try {
+    /* 1. Check for Errors in Subject Response */
+    if (subjectResponse.status != 'success') {
+      throw 'Subject Fetch Error';
+    }
+
+    /* 2. Add only Payload to the response */
+    return {data: subjectResponse.payLoad, error: null};
+  } catch (error) {
+    return {data: null, error: error};
+  }
+};
+
+module.exports = getSubjectData;

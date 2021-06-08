@@ -5,43 +5,64 @@
  */
 
 /* Imports */
-var getSubjectData = require('../Api/getSubjectAPI')
+let getSubjectData = require('../Api/getSubjectAPI')
+let getAssessmentData = require('../Api/getAssessmentDataAPI')
 let ResultDataProcessor = async (resultRawData) => {
 
     try {
 
-        /* Add Result ID */
+        /**
+         * Processing Steps
+         * 1. Add assessment Name to the Result Elements
+         * 2. Convert Date to Human Readable
+         * 3. Iterate resultObjects and update Subject ID's
+         *  */
+        let resultProcessedData = resultRawData.payLoad.map(async (resultElement) => {
 
-        let resultProcessedData =  resultRawData.payLoad.map( async (resultElements) => {
 
-            let resultObject = resultElements.result.map( async (result) => {
+            /* 1. Add Assessment Name */
+            let assessmentData = await getAssessmentData({ "_id": resultElement.assesmentID })
 
+            /* Handle Assessment Response */
+            if (assessmentData.error == null && assessmentData.data.length > 0 ) {
+                resultElement["assessmentName"] = assessmentData.data[0].title
+            }
+            else {
+                resultElement["assessmentName"] = "Undefined Subject"
+            }
 
-                //let subjectDataFetch = await getSubjectData({ "_id": result.subjectID })
+            /* 2. Convert Data to Human Readable format */
+            resultElement["postedDate"] = new Date(resultElement["postedDate"]).toLocaleDateString().replaceAll('/', '-')
 
-                // /* Check Subject Size */
-                // if (subjectDataFetch.payLoad.length == 0) {
-                //     result["subjectName"] = "Undefined Subject"
-                // } else {
-                //     result["subjectName"] = subjectDataFetch.payLoad[0].name
-                // }
+            /* 3.  Iterate resultObjects and update Subject ID's */
+            let resultObjects = resultElement.result.map(async (resultObject) => {
 
-                return result
+                /* Add Subject Name */
+                let subjectDataFetch = await getSubjectData({ "_id": resultObject.subjectID })
+
+                /* Handle Subject Response */
+                if (subjectDataFetch.error == null && subjectDataFetch.data.length > 0 ) {
+                    resultObject["subjectName"] = subjectDataFetch.data[0].name
+                }
+                else {
+                    resultObject["subjectName"] = "Undefined Subject"
+                }
+
+                return resultObject
 
             })
 
-            resultElements["result"] = resultObject
-            return resultElements
+            return resultElement
+
         })
 
+        return Promise.all(resultProcessedData)
 
-        return resultProcessedData
     } catch (error) {
 
         return resultProcessedData
     }
-
-
+    
 }
 
 
